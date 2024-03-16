@@ -13,6 +13,7 @@ class Injection {
     await Get.putAsync(() => SharedPreferences.getInstance());
     //异常处理
     ErrorHelper.init();
+    //路由记录监听器
     RouteHistoryObserver.init();
     //强制竖屏
     ScreenUtils.setPreferredOrientation();

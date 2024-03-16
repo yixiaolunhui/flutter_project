@@ -87,7 +87,7 @@ Widget _myApp() {
     //默认路由跳转动画
     defaultTransition: Transition.native,
 
-    //初始化binding
+    //初始化启动页的page和binding
     initialBinding: SplashBinding(),
     home: SplashPage(),
   );

@@ -103,7 +103,7 @@ android {
             def buildType = variant.buildType.name // 包类型，debug 还是 release
             def flavors = variant.productFlavors.name
             def createTime = new Date().format('yyyyMMddHHmm') // 打包时间 202109251645
-            def fileName = "Anker_Pros${version}_${buildType}_qa_${createTime}.apk"
+            def fileName = "App_${version}_${buildType}_qa_${createTime}.apk"
             if (flavors.contains("mp")) {
                 fileName = "App_${version}_${buildType}_mp_${createTime}.apk"
             } else if (flavors.contains("beta")) {

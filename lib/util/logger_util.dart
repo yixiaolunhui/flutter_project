@@ -16,7 +16,6 @@ class Log {
   }
 
   late Logger logger;
-
   String className = "";
   String fileName = "";
   int lineNumber = 0;
@@ -159,6 +158,7 @@ class ConsoleOutput extends LogOutput {
     }
   }
 
+  ///写日志到文件
   _write(String text) async {
     File? file = await getLogFile();
     if (file != null) {
