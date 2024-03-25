@@ -14,7 +14,7 @@ class SplashPage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         color: Colors.red,
-        child: Center(
+        child: const Center(
           child: Text(
             "Flutter学习"
           )

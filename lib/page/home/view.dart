@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/core/base/page_state.dart';
 import 'package:flutter_project/util/logger_util.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'logic.dart';
@@ -16,13 +17,33 @@ class HomePage extends StatefulWidget {
 
 class HomeState extends PageState<HomePage> {
   final logic = Get.find<HomeLogic>();
-  final state = Get.find<HomeLogic>().state;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text("主页"),
+    return Obx(
+      () => Container(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Expanded(
+              child: Text(
+                logic.state.result.value,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.w,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {
+                logic.login();
+              },
+              child: const Text("登录"),
+            ),
+          ],
+        ),
       ),
     );
   }

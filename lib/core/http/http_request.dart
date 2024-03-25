@@ -5,6 +5,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_project/core/http/http_exception.dart';
+import 'package:flutter_project/core/http/http_url.dart';
 import 'package:flutter_project/util/device_util.dart';
 import 'package:flutter_project/util/logger_util.dart';
 import 'package:flutter_project/util/sp_util.dart';
@@ -39,6 +40,7 @@ class HttpRequest {
         sendTimeout: _sendTimeout,
         connectTimeout: _connectTimeout,
         receiveTimeout: receiveTimeout,
+        baseUrl: HttpUrl.baseUrl,
       );
       _dio = Dio(options);
     }
