@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'logic.dart';
+import 'package:flutter_project/res/images/r.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class SplashPage extends StatelessWidget {
-   SplashPage({Key? key}) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
-        color: Colors.red,
-        child: const Center(
-          child: Text(
-            "Flutter学习"
-          )
+        child: Image.asset(
+          R.image2_webp,
+          fit: BoxFit.cover,
         ),
       ),
     );
