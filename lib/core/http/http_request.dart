@@ -53,12 +53,12 @@ class HttpRequest {
   }
 
   /// 请求，返回参数为 T
-  static Future<void> request(
+  static Future<T?> request<T>(
     Method method,
     String path,
     dynamic params,
     Map<String, dynamic>? header, {
-    Success? success,
+    Success<T>? success,
     Fail? fail,
     Complete? complete,
     CancelToken? cancelToken,
@@ -67,8 +67,8 @@ class HttpRequest {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (connectivityResult == ConnectivityResult.none) {
-        _onError(HttpException.netError, HttpException.netWorkError, fail);
-        return;
+        fail?.call(HttpException.netError, HttpException.netWorkError);
+        return Future.value(null);
       }
       Dio dio = createInstance();
       Log().d("request url -> $path request param:$params");
@@ -82,12 +82,14 @@ class HttpRequest {
           headers: await _headerToken(header, url: path),
         ),
       );
-      success?.call(response.data);
+      success?.call(response.data as T);
+      return Future.value(response.data as T);
     } on DioError catch (e) {
       final NetError netError = HttpException.handleException(e);
-      _onError(netError.code, netError.msg, fail);
+      fail?.call(netError.code, netError.msg);
       Log().d(
           "error =====> message: ${e.message},\ntype:${e.type},\nresponse:${e.response}, \nerror:${e.error}");
+      return Future.value(null);
     } finally {
       complete?.call();
     }
@@ -118,9 +120,6 @@ Future<Map<String, dynamic>?> _headerToken(Map<String, dynamic>? optionalHeader,
   return httpHeaders;
 }
 
-void _onError(int code, String msg, Fail? fail) {
-  fail?.call(code, msg);
-}
 
 Map<String, dynamic> parseData(String data) {
   return json.decode(data) as Map<String, dynamic>;
