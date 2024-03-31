@@ -8,6 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// 键值对存储
 class SpUtil {
+  ///是否第一次打开
+  static bool isFirstOpen() {
+    SharedPreferences sp = Get.find<SharedPreferences>();
+    return sp.getBool(SPKey.isFirstOpen) ?? true;
+  }
+
+  /// 已打开APP
+  static void opened() {
+    Get.find<SharedPreferences>().setBool(SPKey.token, true);
+  }
+
   ///Token
   static String getToken() {
     SharedPreferences sp = Get.find<SharedPreferences>();

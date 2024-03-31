@@ -1,36 +1,31 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_project/core/http/http_api.dart';
-import 'package:flutter_project/core/http/http_url.dart';
-import 'package:flutter_project/util/logger_util.dart';
-import 'package:flutter_project/util/toast_util.dart';
 import 'package:get/get.dart';
 
-import '../../core/http/http_request.dart';
 import 'state.dart';
 
 class HomeLogic extends GetxController with HttpApi {
   final HomeState state = HomeState();
+  late PageController pageController;
 
   @override
   void onInit() {
     super.onInit();
   }
 
-  Future<void> login() async {
-    String? result = await request<String>(
-      method: Method.get,
-      path: HttpUrl.loginUrl,
-      success: (result) {
-        state.result.value = result;
-        Log().d("login success result:$result");
-        ToastUtil.show(msg: '登录成功');
-      },
-      fail: (code, msg) {
-        Log().d("login fail---code:$code msg:$msg");
-      },
-      complete: (){
-        Log().d("login complete");
+  /// 处理tab默认显示索引
+  void handleCurrentIndex({required Map<String, dynamic> params}) {
+    int size = state.homeBottomBar.length;
+    if (params != null) {
+      int tabIndex = params["tabIndex"] ?? 0;
+      // 默认加载页面
+      if (tabIndex >= size) {
+        state.currentIndex.value = size - 1;
+      } else {
+        state.currentIndex.value = tabIndex;
       }
-    );
-    Log().d("login request result:$result");
+    }
+    // 初始化tab控制器
+    pageController = PageController(initialPage: state.currentIndex.value, keepPage: true);
   }
 }

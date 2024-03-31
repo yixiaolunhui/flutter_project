@@ -7,5 +7,5 @@ mixin ArgumentsMixin {
 
 /// 路由拼接的参数数据
 mixin RouteQueryMixin {
-  final Map<String, String> routeParams = HashMap();
+  final Map<String, dynamic> routeParams = HashMap();
 }

@@ -89,6 +89,7 @@ Widget _myApp() {
 
     //初始化启动页的page和binding
     initialBinding: SplashBinding(),
-    home: SplashPage(),
+
+    home: const SplashPage(),
   );
 }

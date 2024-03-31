@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_project/util/logger_util.dart';
 
@@ -14,6 +15,11 @@ class ErrorHelper {
       Log().d('PlatformDispatcher onError!');
       _logError(error, stack);
       return true;
+    };
+    // 自定义报错页面
+    ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
+      Log().d(flutterErrorDetails.toString());
+      return const Center(child: Text("App Error"));
     };
   }
 
