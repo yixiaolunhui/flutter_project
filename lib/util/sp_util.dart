@@ -15,8 +15,8 @@ class SpUtil {
   }
 
   /// 已打开APP
-  static void opened() {
-    Get.find<SharedPreferences>().setBool(SPKey.token, true);
+  static void appIsOpen() {
+    Get.find<SharedPreferences>().setBool(SPKey.isFirstOpen, false);
   }
 
   ///Token

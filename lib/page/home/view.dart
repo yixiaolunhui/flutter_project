@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget with RouteQueryMixin {
 }
 
 class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
-  final logic = Get.find<HomeLogic>();
+  final logic = Get.put(HomeLogic());
 
   @override
   void initState() {

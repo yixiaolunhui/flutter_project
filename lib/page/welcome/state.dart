@@ -1,5 +1,5 @@
+import 'package:get/get.dart';
+
 class WelcomeState {
-  WelcomeState() {
-    ///Initialize variables
-  }
+  RxString adStr = "广告3秒跳过".obs;
 }
