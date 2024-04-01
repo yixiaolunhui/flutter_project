@@ -1,16 +1,10 @@
-# flutter_project
+## 仿Boss项目
 
-A new Flutter project.
+此项目是使用Flutter语言仿Boss的项目，用于学习Flutter的记录。
 
-## Getting Started
+## 效果界面
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| 界面名称 |                                                        效果                                                        |    
+|:-----|:----------------------------------------------------------------------------------------------------------------:|
+| 欢迎页  | <img src="https://files.mdnice.com/user/34651/120ce6e1-3391-4249-bb68-7e5c5ae4a81e.gif" width="300"  alt="欢迎页"/> |   
+| 引导页  | <img src="https://files.mdnice.com/user/34651/36c6d664-8ac3-462b-b18d-f09f8aaa4063.gif" width="300"  alt="引导页"/> |  
