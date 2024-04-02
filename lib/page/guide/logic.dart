@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_project/router/routers.dart';
+import 'package:flutter_project/page/page_ext.dart';
 import 'package:flutter_project/util/sp_util.dart';
 import 'package:get/get.dart';
 
@@ -42,14 +42,14 @@ class GuideLogic extends GetxController {
   void findPeople() {
     _stopLoopGuide();
     SpUtil.appIsOpen();
-    Get.offAndToNamed(Routers.homePage);
+    jumpHomePage();
   }
 
   ///我要应聘
   void findWork() {
     _stopLoopGuide();
     SpUtil.appIsOpen();
-    Get.offAndToNamed(Routers.homePage);
+    jumpHomePage();
   }
 
   @override

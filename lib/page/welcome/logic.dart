@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_project/router/routers.dart';
+import 'package:flutter_project/page/page_ext.dart';
 import 'package:get/get.dart';
 
 import 'state.dart';
@@ -37,7 +37,7 @@ class WelcomeLogic extends GetxController {
   /// 打开首页
   void openHomePage() {
     _stopTimer();
-    Get.offAndToNamed(Routers.homePage);
+    jumpHomePage();
   }
 
   @override

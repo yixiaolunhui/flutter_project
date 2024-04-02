@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/res/colors/color_res.dart';
 import 'package:flutter_project/res/images/r.dart';
 import 'package:flutter_project/res/intl/string_res_key.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,7 @@ class GuidePage extends StatelessWidget {
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 10.w),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF40C2BB),
+                      color: RC.themeColor,
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     child: Text(
