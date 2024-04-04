@@ -733,6 +733,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.4"
+  verification_code:
+    dependency: "direct main"
+    description:
+      name: verification_code
+      sha256: "264f1dd9ef5ae5af0bc50342d6c6110f6415d37858e84d9b76cf40e6b0cf8929"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.4"
   win32:
     dependency: transitive
     description:

@@ -1,3 +1,5 @@
+import 'package:flutter_project/page/code/binding.dart';
+import 'package:flutter_project/page/code/view.dart';
 import 'package:flutter_project/page/home/binding.dart';
 import 'package:flutter_project/page/home/view.dart';
 import 'package:flutter_project/page/login/binding.dart';
@@ -17,6 +19,9 @@ abstract class Routers {
   // 登录
   static const String loginPage = '/login';
 
+  // 验证码
+  static const String codePage = '/code';
+
   static final routePages = [
     GetPage(
       name: splashPage,
@@ -32,6 +37,11 @@ abstract class Routers {
       name: loginPage,
       page: () => const LoginPage(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: codePage,
+      page: () => const CodePage(),
+      binding: CodeBinding(),
     ),
   ];
 }

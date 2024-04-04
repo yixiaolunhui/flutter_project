@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project/core/http/http_api.dart';
-import 'package:flutter_project/core/http/http_request.dart';
-import 'package:flutter_project/core/http/http_url.dart';
 import 'package:flutter_project/res/colors/color_res.dart';
+import 'package:flutter_project/router/routers.dart';
+import 'package:flutter_project/util/regex_util.dart';
 import 'package:flutter_project/util/toast_util.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +21,15 @@ class LoginLogic extends GetxController with HttpApi {
 
   /// 下一步
   void next(BuildContext context) {
+    //为空不能执行下一步
+    if (state.phoneNum.value.isEmpty) {
+      return;
+    }
+    //手机号不符合要求
+    if (!RegexUtil.isMobileSimple(state.phoneNum.value)) {
+      ToastUtil.show(msg: '请输入正确的手机号');
+      return;
+    }
     if (!state.isAgree.value) {
       showDialog(
         context: context,
@@ -90,21 +99,8 @@ class LoginLogic extends GetxController with HttpApi {
       );
       return;
     }
-    ToastUtil.show(msg: '下一步');
-  }
 
-  /// 下一步
-  Future<void> login({
-    required String useName,
-    required String password,
-  }) async {
-    String? result = await request<String>(
-        method: Method.get,
-        path: HttpUrl.loginUrl,
-        success: (result) {
-          ToastUtil.show(msg: '登录成功');
-        },
-        fail: (code, msg) {},
-        complete: () {});
+    //跳转到验证码界面
+    Get.toNamed(Routers.codePage);
   }
 }
