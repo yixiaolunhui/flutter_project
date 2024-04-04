@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_project/page/login/logic.dart';
 import 'package:flutter_project/router/routers.dart';
 import 'package:get/get.dart';
@@ -71,7 +71,7 @@ class CodeLogic extends GetxController {
 
   ///下一步
   void next(BuildContext context) {
-    if(!codeIsCompleted){
+    if (!codeIsCompleted) {
       return;
     }
     Get.offAllNamed(Routers.homePage);
