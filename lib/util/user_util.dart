@@ -7,4 +7,9 @@ class UserUtil {
     return SpUtil.getToken().isNotEmpty;
   }
 
+
+  static void setToken({required String token}){
+    SpUtil.setToken(token);
+  }
+
 }

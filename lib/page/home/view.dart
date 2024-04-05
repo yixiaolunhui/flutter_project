@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/core/base/arguments.dart';
 import 'package:flutter_project/core/base/page_state.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_project/res/colors/color_res.dart';
+import 'package:flutter_project/widgets/bottom_bar_item.dart';
 import 'package:get/get.dart';
 
 import 'logic.dart';
@@ -50,17 +51,28 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
 
       // 底部栏
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: logic.state.currentIndex.value,
+        () => BottomAppBar(
           elevation: 5.0,
-          selectedFontSize: 14.sp,
-          unselectedFontSize: 14.sp,
-          onTap: (int index) async {
-            logic.state.currentIndex.value = index;
-            logic.pageController.jumpToPage(index);
-          },
-          items: _bottomTabsWidget(), // 底部菜单导航
+          height: 65,
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: List.generate(
+                logic.state.homeBottomBar.length,
+                (index) => Expanded(
+                  child: LottieBottomBarItem(
+                    tabName: logic.state.homeBottomBar[index].tabName,
+                    tabIcon: logic.state.homeBottomBar[index].tabIcon,
+                    tabIndex: index,
+                    tabTextSelectedColor: RC.themeColor,
+                    onTap: (index) {
+                      logic.state.currentIndex.value = index;
+                      logic.pageController.jumpToPage(index);
+                    },
+                    isChecked: logic.state.currentIndex.value == index,
+                  ),
+                ),
+              )),
         ),
       ),
     );
@@ -72,18 +84,5 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
   /// 子布局集合
   List<Widget> _bodyContentWidget() {
     return logic.state.homeBottomBar.map((item) => item.child).toList();
-  }
-
-  /// tab布局集合
-  List<BottomNavigationBarItem> _bottomTabsWidget() {
-    return logic.state.homeBottomBar.map<BottomNavigationBarItem>((item) {
-      return BottomNavigationBarItem(
-        icon: Icon(
-          item.tabIcon,
-          size: 22.w,
-        ),
-        label: item.tabName,
-      );
-    }).toList();
   }
 }

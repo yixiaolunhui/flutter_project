@@ -15,8 +15,8 @@ class SpUtil {
   }
 
   /// 已打开APP
-  static void appIsOpen() {
-    Get.find<SharedPreferences>().setBool(SPKey.isFirstOpen, false);
+  static Future<bool> appIsOpen() {
+    return Get.find<SharedPreferences>().setBool(SPKey.isFirstOpen, false);
   }
 
   ///Token
@@ -26,8 +26,8 @@ class SpUtil {
   }
 
   /// Token
-  static setToken(String token) {
-    Get.find<SharedPreferences>().setString(SPKey.token, token);
+  static Future<bool> setToken(String token) {
+    return Get.find<SharedPreferences>().setString(SPKey.token, token);
   }
 
   ///存储语言

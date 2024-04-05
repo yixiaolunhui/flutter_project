@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_project/page/login/logic.dart';
 import 'package:flutter_project/router/routers.dart';
+import 'package:flutter_project/util/sp_util.dart';
+import 'package:flutter_project/util/user_util.dart';
 import 'package:get/get.dart';
 
 import 'state.dart';
@@ -74,6 +76,8 @@ class CodeLogic extends GetxController {
     if (!codeIsCompleted) {
       return;
     }
+    //模拟登录获取到的票据
+    UserUtil.setToken(token: "ABCDEFGHIJKLMN");
     Get.offAllNamed(Routers.homePage);
   }
 }

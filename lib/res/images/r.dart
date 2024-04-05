@@ -11,4 +11,5 @@ class R {
   static const String image7_webp = 'assets/images/image7.webp';
   static const String login_wx_png = 'assets/images/login_wx.png';
   static const String splash_bg_jpg = 'assets/images/splash_bg.jpg';
+  static const String work_top_bg_jpg = 'assets/images/work_top_bg.jpg';
 }
