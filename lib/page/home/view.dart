@@ -64,7 +64,6 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
                     tabName: logic.state.homeBottomBar[index].tabName,
                     tabIcon: logic.state.homeBottomBar[index].tabIcon,
                     tabIndex: index,
-                    tabTextSelectedColor: RC.themeColor,
                     onTap: (index) {
                       logic.state.currentIndex.value = index;
                       logic.pageController.jumpToPage(index);

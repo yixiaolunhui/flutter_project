@@ -81,20 +81,12 @@ class _BottomBarItemState extends State<LottieBottomBarItem>
           Positioned(
             child: Column(
               children: [
-                ColorFiltered(
-                  colorFilter: ColorFilter.mode(
-                    widget.isChecked
-                        ? widget.tabTextSelectedColor
-                        : widget.tabTextColor,
-                    BlendMode.srcIn,
-                  ),
-                  child: Lottie.asset(
-                    widget.tabIcon,
-                    repeat: false,
-                    controller: _animationController,
-                    width: 35.w,
-                    height: 30.w,
-                  ),
+                Lottie.asset(
+                  widget.tabIcon,
+                  repeat: false,
+                  controller: _animationController,
+                  width: 35.w,
+                  height: 30.w,
                 ),
                 Text(
                   widget.tabName,
