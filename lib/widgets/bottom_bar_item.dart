@@ -61,7 +61,7 @@ class _BottomBarItemState extends State<LottieBottomBarItem>
   @override
   void didUpdateWidget(covariant LottieBottomBarItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!widget.isChecked) {
+    if (!widget.isChecked && oldWidget != widget) {
       _animationController?.reset();
     }
   }
