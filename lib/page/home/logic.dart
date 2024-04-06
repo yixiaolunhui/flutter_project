@@ -8,10 +8,6 @@ class HomeLogic extends GetxController with HttpApi {
   final HomeState state = HomeState();
   late PageController pageController;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   /// 处理tab默认显示索引
   void handleCurrentIndex({required Map<String, dynamic> params}) {

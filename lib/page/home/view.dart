@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/core/base/arguments.dart';
 import 'package:flutter_project/core/base/page_state.dart';
-import 'package:flutter_project/res/colors/color_res.dart';
 import 'package:flutter_project/widgets/bottom_bar_item.dart';
 import 'package:get/get.dart';
 
@@ -53,25 +52,28 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
       bottomNavigationBar: Obx(
         () => BottomAppBar(
           elevation: 5.0,
-          height: 65,
+          height: 55,
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: List.generate(
-                logic.state.homeBottomBar.length,
-                (index) => Expanded(
-                  child: LottieBottomBarItem(
-                    tabName: logic.state.homeBottomBar[index].tabName,
-                    tabIcon: logic.state.homeBottomBar[index].tabIcon,
-                    tabIndex: index,
-                    onTap: (index) {
-                      logic.state.currentIndex.value = index;
-                      logic.pageController.jumpToPage(index);
-                    },
-                    isChecked: logic.state.currentIndex.value == index,
-                  ),
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: List.generate(
+              logic.state.homeBottomBar.length,
+              (index) => Expanded(
+                child: BottomBarItem(
+                  tabName: logic.state.homeBottomBar[index].tabName,
+                  tabIcon: logic.state.homeBottomBar[index].tabIcon,
+                  tabIndex: index,
+                  onTap: (index) {
+                    logic.state.currentIndex.value = index;
+                    logic.pageController.jumpToPage(index);
+                  },
+                  isChecked: logic.state.currentIndex.value == index,
+                  tabSelectedIcon:
+                      logic.state.homeBottomBar[index].tabSelectedIcon,
                 ),
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );

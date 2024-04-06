@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/res/colors/color_res.dart';
+import 'package:flutter_project/util/logger_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 
-/// Lottie BottomBarItem
-class LottieBottomBarItem extends StatefulWidget {
+/// BottomBarItem
+class BottomBarItem extends StatefulWidget {
   // Tab 名字
   final String tabName;
 
   // Tab 图标
   final String tabIcon;
+
+  // Tab 选中图标
+  final String tabSelectedIcon;
 
   // 默认颜色
   final Color tabTextColor;
@@ -28,76 +32,73 @@ class LottieBottomBarItem extends StatefulWidget {
   // 角标
   final int badger;
 
-  const LottieBottomBarItem({
+  const BottomBarItem({
     Key? key,
     required this.tabName,
     required this.tabIcon,
+    required this.tabSelectedIcon,
     required this.onTap,
     required this.tabIndex,
     this.tabTextColor = Colors.grey,
-    this.tabTextSelectedColor = Colors.black,
+    this.tabTextSelectedColor = RC.themeColor,
     this.isChecked = false,
     this.badger = 0,
   }) : super(key: key);
 
   @override
-  State<LottieBottomBarItem> createState() => _BottomBarItemState();
+  State<BottomBarItem> createState() => _BottomBarItemState();
 }
 
-class _BottomBarItemState extends State<LottieBottomBarItem>
-    with TickerProviderStateMixin {
-  AnimationController? _animationController;
+class _BottomBarItemState extends State<BottomBarItem>
+    with SingleTickerProviderStateMixin {
+  var _imageKey = UniqueKey();
 
   @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    if (widget.isChecked) {
-      _animationController?.forward();
-    }
-  }
-
-  @override
-  void didUpdateWidget(covariant LottieBottomBarItem oldWidget) {
+  void didUpdateWidget(covariant BottomBarItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (!widget.isChecked && oldWidget != widget) {
-      _animationController?.reset();
+    if (oldWidget != widget && widget.isChecked) {
+      _imageKey = UniqueKey();
+      setState(() {});
     }
-  }
-
-  @override
-  void dispose() {
-    _animationController?.dispose();
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    Log().d("build-------_imageKey=$_imageKey isChecked:${widget.isChecked}");
     return InkWell(
       child: Stack(
-        alignment: Alignment.bottomCenter,
         children: [
           Positioned(
-            child: Column(
-              children: [
-                Lottie.asset(
-                  widget.tabIcon,
-                  repeat: false,
-                  controller: _animationController,
-                  width: 35.w,
-                  height: 30.w,
-                ),
-                Text(
-                  widget.tabName,
-                  style: TextStyle(
-                    color: widget.isChecked
-                        ? widget.tabTextSelectedColor
-                        : widget.tabTextColor,
-                    fontSize: 12.sp,
+            child: Container(
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  widget.isChecked
+                      ? Image(
+                          key: _imageKey,
+                          image: AssetImage(widget.tabSelectedIcon),
+                          width: 40.w,
+                          height: 30.w,
+                        )
+                      : Image.asset(
+                          widget.tabIcon,
+                          width: 40.w,
+                          height: 30.w,
+                          key: _imageKey,
+                        ),
+                  Text(
+                    widget.tabName,
+                    style: TextStyle(
+                      color: widget.isChecked
+                          ? widget.tabTextSelectedColor
+                          : widget.tabTextColor,
+                      fontSize: 10.sp,
+                    ),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
           Visibility(
@@ -119,7 +120,6 @@ class _BottomBarItemState extends State<LottieBottomBarItem>
       ),
       onTap: () {
         widget.onTap(widget.tabIndex);
-        _animationController?.forward();
       },
     );
   }
