@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/res/colors/color_res.dart';
-import 'package:flutter_project/util/logger_util.dart';
+import 'package:flutter_project/util/date_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// BottomBarItem
@@ -49,22 +49,9 @@ class BottomBarItem extends StatefulWidget {
   State<BottomBarItem> createState() => _BottomBarItemState();
 }
 
-class _BottomBarItemState extends State<BottomBarItem>
-    with SingleTickerProviderStateMixin {
-  var _imageKey = UniqueKey();
-
-  @override
-  void didUpdateWidget(covariant BottomBarItem oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget != widget && widget.isChecked) {
-      _imageKey = UniqueKey();
-      setState(() {});
-    }
-  }
-
+class _BottomBarItemState extends State<BottomBarItem> {
   @override
   Widget build(BuildContext context) {
-    Log().d("build-------_imageKey=$_imageKey isChecked:${widget.isChecked}");
     return InkWell(
       child: Stack(
         children: [
@@ -76,17 +63,39 @@ class _BottomBarItemState extends State<BottomBarItem>
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   widget.isChecked
-                      ? Image(
-                          key: _imageKey,
-                          image: AssetImage(widget.tabSelectedIcon),
+                      ? Image.network(
+                          "${widget.tabSelectedIcon}?${DateUtil.getNowDateMs()}",
                           width: 40.w,
                           height: 30.w,
+                          errorBuilder: (context, error, stackTrace) {
+                            return ColorFiltered(
+                              colorFilter: ColorFilter.mode(
+                                widget.tabTextSelectedColor,
+                                BlendMode.srcIn,
+                              ),
+                              child: Image.asset(
+                                widget.tabIcon,
+                                width: 40.w,
+                                height: 30.w,
+                              ),
+                            );
+                          },
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) {
+                              return child;
+                            } else {
+                              return Image.asset(
+                                widget.tabIcon,
+                                width: 40.w,
+                                height: 30.w,
+                              );
+                            }
+                          },
                         )
                       : Image.asset(
                           widget.tabIcon,
                           width: 40.w,
                           height: 30.w,
-                          key: _imageKey,
                         ),
                   Text(
                     widget.tabName,
@@ -120,6 +129,7 @@ class _BottomBarItemState extends State<BottomBarItem>
       ),
       onTap: () {
         widget.onTap(widget.tabIndex);
+        setState(() {});
       },
     );
   }

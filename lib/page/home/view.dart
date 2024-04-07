@@ -52,7 +52,7 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
       bottomNavigationBar: Obx(
         () => BottomAppBar(
           elevation: 5.0,
-          height: 55,
+          height: 50,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
