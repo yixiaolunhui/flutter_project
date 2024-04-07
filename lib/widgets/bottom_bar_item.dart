@@ -81,7 +81,7 @@ class _BottomBarItemState extends State<BottomBarItem> {
                             );
                           },
                           loadingBuilder: (context, child, loadingProgress) {
-                            if (loadingProgress == null) {
+                            if (child != null) {
                               return child;
                             } else {
                               return Image.asset(
