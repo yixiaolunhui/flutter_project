@@ -30,23 +30,23 @@ class HomeState {
     HomeTab(
       tabName: '职位',
       tabIcon: 'assets/images/tabbar/zhiwei.png',
-      tabSelectedIcon: 'https://s4.aconvert.com/convert/p3r68-cdx67/a6f7g-p20cn.webp',
+      tabSelectedIcon: 'assets/images/tabbar/zhiwei.webp',
       child: const WorkPage(),
     ),
     HomeTab(
         tabName: '有了',
         tabIcon: 'assets/images/tabbar/youle.png',
-        tabSelectedIcon: 'https://s4.aconvert.com/convert/p3r68-cdx67/a94mw-m2l01.webp',
+        tabSelectedIcon: 'assets/images/tabbar/youle.webp',
         child: const YoulePage()),
     HomeTab(
         tabName: '消息',
         tabIcon: 'assets/images/tabbar/xiaoxi-c.png',
-        tabSelectedIcon: 'https://s4.aconvert.com/convert/p3r68-cdx67/am2xg-j094g.webp',
+        tabSelectedIcon: 'assets/images/tabbar/xiaoxi-c.webp',
         child: const MessagePage()),
     HomeTab(
         tabName: '我的',
         tabIcon: 'assets/images/tabbar/wode-c.png',
-        tabSelectedIcon: 'https://s4.aconvert.com/convert/p3r68-cdx67/ak14w-xnv62.webp',
+        tabSelectedIcon: 'assets/images/tabbar/wode-c.webp',
         child: const MinePage()),
   ];
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_project/res/colors/color_res.dart';
-import 'package:flutter_project/util/date_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// BottomBarItem
@@ -63,34 +63,11 @@ class _BottomBarItemState extends State<BottomBarItem> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   widget.isChecked
-                      ? Image.network(
-                          "${widget.tabSelectedIcon}?${DateUtil.getNowDateMs()}",
+                      ? Image.asset(
+                          widget.tabSelectedIcon,
+                          bundle: PlatformAssetBundle(),
                           width: 40.w,
                           height: 30.w,
-                          errorBuilder: (context, error, stackTrace) {
-                            return ColorFiltered(
-                              colorFilter: ColorFilter.mode(
-                                widget.tabTextSelectedColor,
-                                BlendMode.srcIn,
-                              ),
-                              child: Image.asset(
-                                widget.tabIcon,
-                                width: 40.w,
-                                height: 30.w,
-                              ),
-                            );
-                          },
-                          loadingBuilder: (context, child, loadingProgress) {
-                            if (child != null) {
-                              return child;
-                            } else {
-                              return Image.asset(
-                                widget.tabIcon,
-                                width: 40.w,
-                                height: 30.w,
-                              );
-                            }
-                          },
                         )
                       : Image.asset(
                           widget.tabIcon,
