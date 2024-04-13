@@ -26,6 +26,7 @@ class HomeState extends PageState<HomePage> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       body: _homeBodyWidget(context),
     );
